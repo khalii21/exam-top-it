@@ -9,8 +9,6 @@ struct ITrait
 
 struct Size : ITrait
 {
-  private:
-    size_t k_;
   Size()
   {
     k_ = 0;
@@ -23,9 +21,17 @@ struct Size : ITrait
   {
     return k_;
   }
+  private:
+    size_t k_;
 };
 
 int main()
 {
-
+  int a = 0;
+  Size size;
+  while (std::cin >> a)
+  {
+    size(a);
+  }
+  std::cout << "SIZE = " << size() << "\n";
 }

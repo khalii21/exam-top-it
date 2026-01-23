@@ -91,10 +91,21 @@ struct Seq
   }
 
   private:
+    void resize(size_t newc)
+    {
+      int * new_data = new int[newc];
+      for (size_t i = 0; i < size_; i++)
+      {
+        new_data[i] = data_[i];
+      }
+      delete[] data_;
+      data_ = new_data;
+      capacity_ = newc;
+    }
     int * data_;
     size_t size_;
     size_t capacity_;
-}
+};
 
 
 int main()

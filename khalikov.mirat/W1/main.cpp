@@ -85,13 +85,13 @@ struct Seq
     if (size_ >= capacity_)
     {
       size_t new_capacity = capacity_ * 2;
-      resize(new_capacity);
+      Resize(new_capacity);
     }
     data_[size_++] = a;
   }
 
   private:
-    void resize(size_t newc)
+    void Resize(size_t newc)
     {
       int * new_data = new int[newc];
       for (size_t i = 0; i < size_; i++)
@@ -114,11 +114,26 @@ int main()
   Size size;
   SumPositive sump;
   SumNegative sumn;
-  while (std::cin >> a)
+  try
   {
-    size(a);
-    sump(a);
-    sumn(a);
+    Seq sequence;
+    while (std::cin >> a)
+    {
+      size(a);
+      sump(a);
+      sumn(a);
+      sequence.EnterSeq(a);
+    }
+  }
+  catch (const std::bad_alloc &)
+  {
+    std::cerr << "Bad_alloc" << "\n";
+    return 1;
+  }
+  if ((std::cin.fail()) || (!(std::cin.eof())))
+  {
+    std::cerr << "Bad input\n";
+    return 2;
   }
   std::cout << "SIZE = " << size() << "\n";
   std::cout << "SUMP = " << sump() << "\n";

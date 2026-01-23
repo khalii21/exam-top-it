@@ -67,6 +67,25 @@ struct SumNegative : ITrait
     int k_;
 };
 
+struct Seq
+{
+  Seq()
+  {
+    data_ = nullptr;
+    size_ = 0;
+    capacity_ = 0;
+  }
+  ~Seq()
+  {
+    delete[] data_;
+  }
+  private:
+    int * data_;
+    size_t size_;
+    size_t capacity_;
+}
+
+
 int main()
 {
   int a = 0;

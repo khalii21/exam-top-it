@@ -73,12 +73,23 @@ struct Seq
   {
     data_ = nullptr;
     size_ = 0;
-    capacity_ = 0;
+    capacity_ = 1;
   }
   ~Seq()
   {
     delete[] data_;
   }
+
+  void EnterSeq (int a)
+  {
+    if (size_ >= capacity_)
+    {
+      size_t new_capacity = capacity_ * 2;
+      resize(new_capacity);
+    }
+    data_[size_++] = a;
+  }
+
   private:
     int * data_;
     size_t size_;
